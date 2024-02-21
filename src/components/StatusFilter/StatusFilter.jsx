@@ -1,22 +1,18 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '../Button/Button';
-//import css from './StatusFilter.module.css';
 import { statusFilters } from '../../redux/constants';
-import { setStatusFilter } from '../../redux/filtersSlice';
 import { getStatusFilter } from '../../redux/selectors';
+import { setStatusFilter } from '../../redux/filtersSlice';
+import css from './StatusFilter.module.css';
 
 export const StatusFilter = () => {
-  // Отримуємо посилання на функцію відправки екшенів
   const dispatch = useDispatch();
-
   const filter = useSelector(getStatusFilter);
 
-  // Викликаємо генератор екшену та передаємо значення фільтра
-  // Відправляємо результат - екшен зміни фільтра
-  const handleFilterChange = filter => dispatch(setStatusFilter(filter));
+  const handleFilterChange = (filter) => dispatch(setStatusFilter(filter));
 
   return (
-    <div>
+    <div className={css.wrapper}>
       <Button
         selected={filter === statusFilters.all}
         onClick={() => handleFilterChange(statusFilters.all)}
